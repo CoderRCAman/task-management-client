@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import { BASE_URL } from "../variables";
 export default function AttachModal({ open, onClose, project, setProject }) {
   const [file, setFile] = useState();
   const fileRef = useRef(null);
@@ -24,7 +25,7 @@ export default function AttachModal({ open, onClose, project, setProject }) {
       formData.append("file", file);
       const response = await axios({
         method: "post",
-        url: `http://localhost:5000/api/project/attachment/${project_id}`,
+        url: `${BASE_URL}/api/project/attachment/${project_id}`,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",

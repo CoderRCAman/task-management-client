@@ -17,6 +17,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { BASE_URL } from "../variables";
 
 export default function EnrollModal({ onClose, open, employees }) {
   const [rows, setRows] = useState([]);
@@ -25,7 +26,7 @@ export default function EnrollModal({ onClose, open, employees }) {
   const project_id = useParams().id;
   /****************************************************************************/
   const getEmployees = async () => {
-    const empRes = await axios.get("http://localhost:5000/api/employee", {
+    const empRes = await axios.get(`${BASE_URL}/employee`, {
       withCredentials: true,
     });
     if (empRes.status === 200) {
@@ -77,7 +78,7 @@ export default function EnrollModal({ onClose, open, employees }) {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/project/enroll/${project_id}`,
+        `${BASE_URL}/project/enroll/${project_id}`,
         {
           employees: employees,
         }

@@ -7,11 +7,12 @@ import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
+import { BASE_URL } from "../variables";
 export default function ReplyModal({ open, onClose ,user_id, task_id}) {
   const [reply, setReply] = useState(""); 
   const sendReply = async () => {  
     if (!reply) return;
-    const res = await axios.post("http://localhost:5000/api/reply", {
+    const res = await axios.post(`${BASE_URL}/reply`, {
       user_id: user_id,
       task_id: task_id,
       reply: reply,

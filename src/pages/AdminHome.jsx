@@ -12,6 +12,7 @@ import RightBar from "../components/RightBar";
 import SettingsIcon from "@mui/icons-material/Settings";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { BASE_URL } from "../variables";
 
 export default function AdminHome() {
   const [projects, setProjects] = useState([]);
@@ -28,7 +29,7 @@ export default function AdminHome() {
   };
   const getAllProjects = async () => {
     try {
-      const projectRes = await axios.get("http://localhost:5000/api/project", {
+      const projectRes = await axios.get(`${BASE_URL}/project`, {
         withCredentials: true,
       });
       console.log(projectRes.data);
@@ -44,7 +45,7 @@ export default function AdminHome() {
   const deleteProject = async (id) => {
     try {
       const deleteResponse = await axios.delete(
-        `http://localhost:5000/api/project/${id}`
+        `${BASE_URL}/project/${id}`
       );
       if (deleteResponse.status === 200) {
         alert("😍 Successfully Deleted");

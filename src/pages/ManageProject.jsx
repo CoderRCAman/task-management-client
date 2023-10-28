@@ -61,7 +61,7 @@ export default function ManageProject() {
   const getProject = async () => {
     try {
       const projectResponse = await axios.get(
-        `http://localhost:5000/api/project/${project_id}`
+        `${BASE_URL}/project/${project_id}`
       );
       console.log(projectResponse.data);
       if (projectResponse.status === 200) setProject(projectResponse.data);
@@ -72,7 +72,7 @@ export default function ManageProject() {
   const getTask = async () => {
     try {
       const taskResponse = await axios.get(
-        `http://localhost:5000/api/task/${project_id}`
+        `${BASE_URL}/task/${project_id}`
       );
       console.log(taskResponse.data.tasks);
       if (taskResponse.status === 200) setTasks(taskResponse.data.tasks);
@@ -91,7 +91,7 @@ export default function ManageProject() {
     console.log(value);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/project/status/${params.id}`,
+        `${BASE_URL}/project/status/${params.id}`,
         { status: value }
       );
       if (res.status === 200) {
@@ -109,7 +109,7 @@ export default function ManageProject() {
     console.log(value,task_id);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/task/status/`,
+        `${BASE_URL}/task/status/`,
         { status: value , task_id : task_id }
       );
       if (res.status === 200) {
@@ -126,7 +126,7 @@ export default function ManageProject() {
   const deleteTask = async (id) => {
     try {
       const deleteResponse = await axios.delete(
-        `http://localhost:5000/api/task/${id}?project_id=${project_id}`
+        `${BASE_URL}/task/${id}?project_id=${project_id}`
       );
       if (deleteResponse.status === 200) {
         setTasks((tasks) => tasks.filter((task) => task._id !== id));

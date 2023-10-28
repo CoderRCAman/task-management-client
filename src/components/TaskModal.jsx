@@ -17,6 +17,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../variables";
 
 
 const initialState = {
@@ -64,7 +65,7 @@ export default function TaskModal({ open, onClose ,employees}) {
     
       const res = await axios({
         method: "POST",
-        url: `http://localhost:5000/api/task/${params.id}`,
+        url: `${BASE_URL}/task/${params.id}`,
         data: formData,
         withCredentials: true,
         headers: {

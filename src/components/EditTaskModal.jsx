@@ -8,6 +8,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from '../variables';
 
 const initialState = {
     task_name: "",
@@ -25,7 +26,7 @@ export default function EditTaskModal({ open, onClose,task_id}) {
     const getTaskById =async()=>{
         try{
             const taskResponse = await axios.get(
-                `http://localhost:5000/api/taskId/${task_id}`
+                `${BASE_URL}/taskId/${task_id}`
             )
             console.log(taskResponse.data)
             if(taskResponse.status === 200) setTask(taskResponse.data.task)
@@ -43,7 +44,7 @@ export default function EditTaskModal({ open, onClose,task_id}) {
       e.preventDefault() ;
         try{
            const response =  await axios.patch(
-                `http://localhost:5000/api/task/${task_id}`,
+                `${BASE_URL}/task/${task_id}`,
                 {
                     task_name,
                     description,

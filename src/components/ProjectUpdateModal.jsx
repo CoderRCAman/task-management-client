@@ -12,6 +12,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import AddOutlined from "@mui/icons-material/AddOutlined";
+import { BASE_URL } from "../variables";
 
 const initialState = {
   title: "",
@@ -31,7 +32,7 @@ export default function AttachModal({ open, onClose }) {
   const getProject = async () => {
     try {
       const projectResponse = await axios.get(
-        `http://localhost:5000/api/project/${project_id}`
+        `${BASE_URL}/project/${project_id}`
       );
       console.log(projectResponse.data);
       if (projectResponse.status === 200) setProject(projectResponse.data); 
@@ -48,7 +49,7 @@ export default function AttachModal({ open, onClose }) {
   const updateProject = () => {
     try {
       axios.patch(
-        `http://localhost:5000/api/project/${project_id}`,
+        `${BASE_URL}/project/${project_id}`,
         {
             title,
             description,

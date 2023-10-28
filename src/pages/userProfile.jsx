@@ -3,13 +3,14 @@ import { Stack, Box, Typography } from "@mui/material";
 import axios from 'axios'
 import RightBar from "../components/RightBar";
 import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { TextField, Avatar, Button, Tooltip } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 import AddOutlined from "@mui/icons-material/AddOutlined";
+import { BASE_URL } from "../variables";
 
 const initialState = {
   emp_name: "",
@@ -24,7 +25,7 @@ export default function Profile() {
 
   const getUser = async () => {
     try {
-      const userResponse = await axios.get("http://localhost:5000/api/infor", {
+      const userResponse = await axios.get(`${BASE_URL}/infor`, {
         withCredentials: true,
       });
       console.log(userResponse);
@@ -41,7 +42,7 @@ export default function Profile() {
     if (emp_name) formData.append("emp_name", emp_name);
     if (avatar) formData.append("avatar", user.avatar);
     try {
-      axios.patch("http://localhost:5000/api/update", formData, {
+      axios.patch(`${BASE_URL}/update`, formData, {
         withCredentials: true,
       });
       console.log(user);

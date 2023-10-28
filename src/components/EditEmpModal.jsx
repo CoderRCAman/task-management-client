@@ -14,6 +14,7 @@ import { Modal } from "react-responsive-modal";
 import CloseIcon from "@mui/icons-material/Close";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { BASE_URL } from "../variables";
 export default function EditEmpModal({ onClose, open, employees, task }) {
   const [selected, setSelected] = useState(null);
   const [updated, setUpdated] = useState({});
@@ -57,7 +58,7 @@ export default function EditEmpModal({ onClose, open, employees, task }) {
     }
     try {
       const taskRes = await axios.patch(
-        `http://localhost:5000/api/emp/task/${task_id}`,
+        `${BASE_URL}/emp/task/${task_id}`,
         updatedEmployees
       );
       if (taskRes.status === 200) {

@@ -15,6 +15,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import CheckIcon from "@mui/icons-material/Check";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { BASE_URL } from "../variables";
 export default function ManageUser() {
   const fileRef = useRef(null);
   const [project, setProject] = useState(null);
@@ -27,7 +28,7 @@ export default function ManageUser() {
   const getProject = async () => {
     try {
       const employeeRes = await axios.get(
-        `http://localhost:5000/api/employee/project/${params.id}`,
+        `${BASE_URL}/employee/project/${params.id}`,
         {
           withCredentials: true,
         }
@@ -57,7 +58,7 @@ export default function ManageUser() {
     formData.append("file", userResponse.file);
     try {
       const postRes = await axios.post(
-        `http://localhost:5000/api/upload/${task_id}/${user_id}`,
+        `${BASE_URL}/upload/${task_id}/${user_id}`,
         formData,
         {
           headers: {

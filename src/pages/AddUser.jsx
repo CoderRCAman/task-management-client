@@ -15,6 +15,7 @@ import RightBar from "../components/RightBar";
 import AddOutlined from "@mui/icons-material/AddOutlined"; 
 import axios from 'axios' ;
 import toast, {Toaster} from 'react-hot-toast' ;
+import { BASE_URL } from "../variables";
 const initialState = {
   emp_id: "",
   emp_name: "",
@@ -67,7 +68,7 @@ export default function AddUser() {
       // } 
       const res = await axios({
         method : "POST" ,
-        url : 'http://localhost:5000/api/employee' , 
+        url : `${BASE_URL}/employee` , 
         data : formData , 
         withCredentials : true ,
         headers: {

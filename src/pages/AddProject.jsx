@@ -10,7 +10,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
+import {BASE_URL} from '../variables'
 const initialState = {
   project_id: "",
   title: "",
@@ -54,7 +54,7 @@ export default function AddProject() {
       formData.append("endDate", endDate);
       const res = await axios({
         method: "POST",
-        url: "http://localhost:5000/api/project",
+        url: `${BASE_URL}/project`,
         data: formData,
         withCredentials: true,
         headers: {

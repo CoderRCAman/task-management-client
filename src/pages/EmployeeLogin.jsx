@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { BASE_URL } from "../variables";
 
 const theme = createTheme();
 
@@ -28,7 +29,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       const userDetails = await axios.post(
-        "http://localhost:5000/api/employee/login",
+        `${BASE_URL}/employee/login`,
         {
           ...user,
         },

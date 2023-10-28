@@ -7,7 +7,7 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-
+import { BASE_URL } from '../variables';
 
 
 
@@ -15,7 +15,7 @@ export default function AttachTaskModal({onClose, open,task_id }) {
   const fileRef = useRef(null);
   const [file, setFile] = useState();
   const [task,setTasks] =useState("")
- 
+  
  
 
  useEffect(()=>{
@@ -33,7 +33,7 @@ export default function AttachTaskModal({onClose, open,task_id }) {
       formData.append("file", file);
       const response = await axios({
         method: "post",
-        url: `http://localhost:5000/api/task/attachment/${task_id}`,
+        url: `${BASE_URL}/task/attachment/${task_id}`,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",

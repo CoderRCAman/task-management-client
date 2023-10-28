@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Box, Avatar, Typography } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import axios from "axios";
+import { BASE_URL } from "../variables";
 export default function RightBar() {
   const [allEmp, setAllEmp] = useState([]);
   const getAllEmployee = async () => {
 
   try{
 
-    const empRes = await axios.get("http://localhost:5000/api/employee",{
+    const empRes = await axios.get(`${BASE_URL}/employee`,{
       withCredentials: true,
     });
     console.log(empRes)

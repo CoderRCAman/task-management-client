@@ -11,13 +11,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SideBar from '../components/Sidebar'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import { BASE_URL } from '../variables';
 
 export default function UserHome() {
   const [projects, setProjects] = useState([]);
   const id  = localStorage.getItem("user_id")
   const getProject = async () => {
     try {
-      const employeeRes = await axios.get(`http://localhost:5000/api/employee/${id}`) ; 
+      const employeeRes = await axios.get(`${BASE_URL}/employee/${id}`) ; 
       if(employeeRes.status === 200) {
         console.log(employeeRes.data)  
         setProjects(employeeRes.data.projects)

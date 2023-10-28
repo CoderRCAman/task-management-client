@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import toast, { Toaster } from "react-hot-toast";
 import axios from 'axios'
+import { BASE_USER } from '../variables';
 
 export default function Register() {
     const [user, setUser] = useState({
@@ -25,7 +26,7 @@ export default function Register() {
       const registerSubmit = async (e) => {
         e.preventDefault();
         try {
-          await axios.post("http://localhost:5000/user/register", { ...user });
+          await axios.post(`${BASE_USER}/register`, { ...user });
     
           // localStorage.setItem("firstLogin", true);
           // localStorage.setItem("role","admin")
